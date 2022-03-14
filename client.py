@@ -35,18 +35,28 @@ def send_and_receive_tcp(address, port, message):
     print(r_msg)
     # close the socket
     s.close()
-    # Get your CID and UDP port from the message
+    # Get your CID, UDP port and encryption key from the message
     
     # Continue to UDP messaging. You might want to give the function some other parameters like the above mentioned cid and port.
-    send_and_receive_udp(address, port)
+    send_and_receive_udp(address, port, CID)
     return
  
  
-def send_and_receive_udp(address, port):
-    '''
-    Implement UDP part here.
-    '''
-    print("This is the UDP part. Implement it yourself.")
+def send_and_receive_udp(address, port, CID, enc_key):
+    # Create UDP socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # Bind socket
+    sock.bind((address, port))
+    # Send data to server
+    message = "First message"
+    encoded_msg = str.encode(message)
+    s.sendall(encoded_msg, (address, port))
+    r_data = s.recv(1024)
+    r_msg = r_data.decode()
+    while True:
+        data, addr = s.recvfrom(1024)
+        print("received message: %s" % data)
+        # Tähän viestin kääntö ja takaisinlähetys
     return
  
  
