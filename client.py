@@ -131,7 +131,7 @@ def split_message(message):
             a_packet = message[packet*64:64+packet*64]
             packets.append(a_packet)
         return packets
-        
+
 def add_parity_bit_to_message(message):
     for char in message:
         add_parity_bit(char) 
@@ -171,19 +171,3 @@ def main():
 if __name__ == '__main__':
     # Call the main function when this script is executed
     main()
-
-
-
-
-
-import socket
-
-HOST = "195.148.20.105"  # The server's hostname or IP address
-PORT = 10000  # The port used by the server
-
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    s.sendall(b"Hello, world")
-    data = s.recv(1024)
-
-print(f"Received {data!r}")
